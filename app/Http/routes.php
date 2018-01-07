@@ -36,6 +36,7 @@ Route::get('/transaction', 'TransactionController@index');
 Route::get('/transaction/detail/{id}', 'TransactionController@detail');
 Route::post('/transaction', 'TransactionController@insert');
 Route::get('/transaction/delete/{id}','TransactionController@delete');
+Route::get('/myGame','TransactionController@myGame');
 
 Route::get('/managegenre', 'GenreController@manageGenre');
 Route::get('/newgenre', 'GenreController@newGenre');

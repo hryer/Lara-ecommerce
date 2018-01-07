@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Transaction;
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 
 class TransactionController extends Controller
 {
@@ -34,12 +35,21 @@ class TransactionController extends Controller
 
         $transactions = Transaction::all();
 
-//            $transactions = Transaction::where('user_id', Auth::user()->id)->get();
+
 
 
         return view('transaction.index', compact('action', 'transactions'));
     }
 
+    public function myGame(Request $request){
+        $action = $request->action;
+
+        $transactions = Transaction::where('user_id', Auth::user()->id)->get();
+
+
+
+        return view('transaction.user', compact('action', 'transactions'));
+    }
 
     public function delete($id){
 
