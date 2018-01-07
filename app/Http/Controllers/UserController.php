@@ -60,4 +60,42 @@ class UserController extends Controller
         return redirect('/profile');
 
     }
+
+    public function delete($id){
+
+        $user = User::find($id);
+        $user->delete();
+
+        return back();
+    }
+
+    public function viewUpdate($id)
+    {
+        $user = User::find($id);
+
+        return view('user.update')->with(
+            ['user' => $user]
+        );
+    }
+
+    public function update(Request $r){
+
+        $user = User::find($r->id);
+
+        $user->email = $r->email;
+        $user->name = $r->name;
+        $user->dob = $r->dob;
+        $user->password = bcrypt($r->password);
+        $user->role = $r->role;
+        $image = Input::file('pp');
+        $file_name = $image->getClientOriginalName();
+        $upload = Input::file('pp')->move('users', $file_name);
+        $user->pp = 'users/'.$file_name;
+        $user->save();
+
+
+        return redirect ('manageuser');
+
+    }
+
 }

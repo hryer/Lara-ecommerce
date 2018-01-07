@@ -51,3 +51,5 @@ Route::get('/manageuser','UserController@index');
 Route::get('/newuser','UserController@newuser');
 Route::post('/insertUser','UserController@insert');
 Route::get('/deleteUser/{id}','UserController@delete');
+Route::get('/editUser/{id}','UserController@viewUpdate');
+Route::post('/updateUser','UserController@update');

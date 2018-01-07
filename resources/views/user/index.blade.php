@@ -28,8 +28,8 @@
                         <td>{{$u->dob}}</td>
                         <td>{{$u->pp}}</td>
                         <td>
-                            <a class="btn btn-danger" href="{{url('/user/delete.'.$u->id)}}">Delete</a>
-                            <a class="btn btn-primary" href="{{url('/user/update/'.$u->id)}}">Update</a>
+                            <a class="btn btn-danger" href="{{url('/deleteUser/'.$u->id)}}">Delete</a>
+                            <a class="btn btn-primary" href="{{url('/editUser/'.$u->id)}}">Update</a>
                         </td>
                     </tr>
 
