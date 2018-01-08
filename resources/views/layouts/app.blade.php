@@ -73,10 +73,16 @@
             padding: 10px;
             width: 270px;
             height: 360px;
+            position:relative;
         }
         #product #gambar #harga{
             color: #ff6600;
             font-size: 20px;
+        }
+        #product .glyphicon-shopping-cart{
+            position: absolute;
+            top:95%;
+            right:2%;
         }
         #background-profile{
             width: 100%;
@@ -94,6 +100,37 @@
         }
         #profile-form label {
             padding-left: 400px;
+        }
+        #cart-box{
+            position:relative;
+            height:200px;
+            width: 500px;
+        }
+
+        #cart-box span{
+            position:absolute;
+        }
+
+        #cart-box #judul{
+            top:0;
+            left:0;
+            font-weigt: bold;
+            font-size: 28px;
+        }
+        #cart-box #harga{
+            top:0;
+            right:0;
+            font-weigt: bold;
+            font-size: 28px;
+        }
+        #cart-box #pcmac{
+            top:30%;
+            left:0;
+            color:darkgrey;
+        }
+        #cart-box .glyphicon{
+            top:30%;
+            right:0;
         }
 
     </style>
@@ -127,7 +164,7 @@
                     @elseif (Auth::user()->role=='member')
                         <li><a href="{{ url('/home') }}">Home</a></li>
                         <li><a href="{{ url('/store') }}">Store</a></li>
-                        <li><a href="{{ url('/home') }}">My Games</a></li>
+                        <li><a href="{{ url('/myGame') }}">My Games</a></li>
                     @elseif (Auth::user()->role=='admin')
                         <li><a href="{{ url('/home') }}">Home</a></li>
                         <li><a href="{{ url('/managegame') }}">Manage Games</a></li>
@@ -143,14 +180,14 @@
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
-                    @elseif (Auth::user()->role==null)
+                    @elseif (Auth::user()->role=='member')
                         <li><a href="">Hi, {{ Auth::user()->name }}</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                 <span class="fa fa-user" style="background-color:transparent; color: grey;font-size: 15px;padding:0px; margin:0px"></span><span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/logout') }}">Cart</a></li>
+                                <li><a href="{{ url('/cart') }}">Cart</a></li>
                                 <li><a href="{{ url('/profile') }}">Profile</a></li>
                                 <li><a href="{{ url('/logout') }}">Logout</a></li>
                             </ul>
@@ -162,7 +199,7 @@
                                 <span class="fa fa-user" style="background-color:transparent; color: grey;font-size: 15px;padding:0px; margin:0px"></span><span class="caret"></span>
                             </a>
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ url('/cart') }}">View Transactions</a></li>
+                                <li><a href="{{ url('/transaction') }}">View Transactions</a></li>
                                 <li><a href="{{ url('/profile') }}">Profile</a></li>
                                 <li><a href="{{ url('/logout') }}">Logout</a></li>
                             </ul>

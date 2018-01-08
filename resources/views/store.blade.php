@@ -17,6 +17,9 @@
                 <ul style="list-style-type: none">
                     @foreach($genres as $genre)
                     <li><a href="#" style="">{{$genre->name}}</a></li>
+                        <select class="hidden form-control" name="by">
+                            <option value="genre">Name</option>
+                        </select>
 
                         @endforeach
                 </ul>
@@ -46,13 +49,23 @@
                     <div class="col-md-4">
                         <div id="product">
                             <div id="gambar">
+                                @if(Auth::guest() or Auth::user()->role=='admin')
                                 <img src="{{$g->picture}}" alt="">
                                 <br>
                                 <span>{{$g->name}}</span>
                                 <br>
                                 <span id="harga">Rp. {{$g->price}}</span>
-                                <br>
-                                <a class="btn btn-primary" href="{{ url('detail/'.$g->id) }}">Display</a>
+                                @elseif (Auth::user()->role=='member')
+                                    <img src="{{$g->picture}}" alt="">
+                                    <br>
+                                    <span>{{$g->name}}</span>
+                                    <br>
+                                    <span id="harga">Rp. {{$g->price}}</span>
+                                <a href="{{ url('detail/'.$g->id) }}">
+                                    <span class="glyphicon glyphicon-shopping-cart"></span>
+                                </a>
+                                    @endif
+
                             </div>
                         </div>
                     </div>

@@ -18,13 +18,22 @@
                 @foreach($lowestPrice as $g)
                 <div class="col-md-3">
                     <div id="gambar">
+                        @if(Auth::guest() or Auth::user()->role=='admin')
                         <img src="{{$g->picture}}" alt="">
                         <br>
                         <span>{{$g->name}}</span>
                         <br>
                         <span id="harga">Rp. {{$g->price}}</span>
-                        <br>
-                        <a class="btn btn-primary" href="{{ url('detail/'.$g->id) }}">Display</a>
+                            @elseif (Auth::user()->role=='member')
+                            <img src="{{$g->picture}}" alt="">
+                            <br>
+                            <span>{{$g->name}}</span>
+                            <br>
+                            <span id="harga">Rp. {{$g->price}}</span>
+                            <a href="{{ url('detail/'.$g->id) }}">
+                                <span class="glyphicon glyphicon-shopping-cart"></span>
+                            </a>
+                        @endif
                     </div>
                 </div>
                 @endforeach

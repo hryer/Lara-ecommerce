@@ -6,7 +6,7 @@
         <div class="container-fluid" >
 
             <div class="row">
-              
+
 
 
 
@@ -22,8 +22,6 @@
                                     <span>{{$g->name}}</span>
                                     <br>
                                     <span id="harga">Rp. {{$g->price}}</span>
-                                    <br>
-                                    <a class="btn btn-primary" href="{{ url('detail/'.$g->id) }}">Display</a>
                                 </div>
                             </div>
                         </div>

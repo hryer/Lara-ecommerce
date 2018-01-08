@@ -7,7 +7,7 @@
                 <h2>Manage Games</h2>
             </div>
             <div class="col-sm-12">
-                <a href="{{url('/newgame')}}"><h4>Add New Game</h4></a>
+                <a class="btn btn-success" href="{{url('/newgame')}}"><h4>Add New Game</h4></a>
             </div>
             <table class="table">
                 <tr>

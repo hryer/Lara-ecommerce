@@ -7,7 +7,7 @@
                 <h2>Manage Genre</h2>
             </div>
             <div class="col-sm-12">
-                <a href="{{url('/newgenre')}}"><h4>Add New Genre</h4></a>
+                <a  class="btn btn-success" href="{{url('/newgenre')}}"><h4>Add New Genre</h4></a>
             </div>
             <table class="table">
                 <tr>
@@ -21,8 +21,8 @@
                         <td><?php echo $i++;?> </td>
                         <td>{{$g->name}}</td>
                         <td>
-                            <a href="{{url('/delete/'.$g->id)}}">Delete</a>
-                            <a href="{{url('/updategenreview/'.$g->id)}}">Update</a>
+                            <a class="btn btn-danger" href="{{url('/delete/'.$g->id)}}">Delete</a>
+                            <a  class="btn btn-primary" href="{{url('/updategenreview/'.$g->id)}}">Update</a>
                         </td>
                     </tr>
 

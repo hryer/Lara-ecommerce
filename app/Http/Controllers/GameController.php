@@ -24,7 +24,7 @@ class GameController extends Controller
     {
         $action = $request->action;
 
-        $itemPerPage = 4;
+        $itemPerPage = 6;
 
         $games = Game::paginate($itemPerPage);
         $genres = Genre::all();

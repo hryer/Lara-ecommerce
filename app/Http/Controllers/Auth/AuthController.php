@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\User;
+use App\Role;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -74,6 +75,10 @@ class AuthController extends Controller
             'pp' => $data['pp'],
             'role' => $data['role'],
         ]);
+
+        $user->roles()->attach(Role::where('name','member')->first());
+
+
         $fname = $data['pp']->getClientOriginalName();
         $upload = $data['pp']->move('users', $fname);
         $user->update(['pp' => 'users/'.$fname]);

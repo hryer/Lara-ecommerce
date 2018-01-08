@@ -8,6 +8,7 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use App\User;
+use App\Role;
 
 class UserController extends Controller
 {
@@ -29,6 +30,7 @@ class UserController extends Controller
             'pp' => $data['pp'],
             'role' => $data['role'],
         ]);
+        $user->roles()->attach(Role::where('name','member')->first());
         $fname = $data['pp']->getClientOriginalName();
         $upload = $data['pp']->move('users', $fname);
         $user->update(['pp' => 'users/'.$fname]);
@@ -96,6 +98,19 @@ class UserController extends Controller
 
         return redirect ('manageuser');
 
+    }
+
+    public function changeRole(Request $r){
+        $user = User::where('email',$r['email'])->first();
+        $user->roles()->detach();
+        if($r['role_admin']){
+            $user->roles()->attach(Role::where('name','admin')->first());
+        }
+        if($r['role_member']){
+            $user->roles()->attach(Role::where('name','member')->first());
+        }
+
+        return redirect()->back();
     }
 
 }
