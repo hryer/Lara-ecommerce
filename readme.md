@@ -4,7 +4,9 @@ Andre ( Back End )
 
 Angeline ( Front End + Documentation )
 
-Harry Ermawan ( Back End )
+Harry Ermawan ( Back End + Front End ) [Project Leader]
+
+Titus Efferian ( Documentation )
 
 
 ## TECH STACK
