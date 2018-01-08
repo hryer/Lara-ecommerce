@@ -1,10 +1,10 @@
 # DEVELOPER
 
-Andre
+Andre ( Back End )
 
-Angeline
+Angeline ( Front End + Documentation )
 
-Harry Ermawan
+Harry Ermawan ( Back End )
 
 
 ## TECH STACK
