@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 
 use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 class GenreController extends Controller
 {
@@ -25,6 +26,17 @@ class GenreController extends Controller
 
     public function insert(Request $r)
     {
+        $rules = [
+            'name' => 'required|min:3|max:255',
+        ];
+
+        //validasi
+        $validation = Validator::make($r->all(), $rules);
+
+        if($validation->fails()){
+            return redirect()->back()->withErrors($validation);
+        }
+
         $genre = new Genre();
 
         $genre->name = $r->name;

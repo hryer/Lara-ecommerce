@@ -4,10 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Game;
 use App\Genre;
+use App\Rating;
 use Illuminate\Http\Request;
 
 use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
+use Illuminate\Support\Facades\Validator;
 
 class GameController extends Controller
 {
@@ -47,7 +50,13 @@ class GameController extends Controller
 
     public function detail($id){
         $game = Game::find($id);
-        return view('detail', compact('game'));
+//        $rate = Rating::where("game_id","=",$id)->avg("rating");
+//
+//        if($rate == null){
+            return view('detail', compact('game'));
+//        }else{
+//            return view('detail', compact('game','rate'));
+//        }
     }
 
     public function newGame()
@@ -67,7 +76,18 @@ class GameController extends Controller
 
     public function insert(Request $r)
     {
+        $rules = [
+            'name' => 'required|min:3|max:255',
+            'price' =>'required|min:1|numeric',
+            'picture' => 'required|image'
+        ];
 
+        //validasi
+        $validation = Validator::make($r->all(), $rules);
+
+        if($validation->fails()){
+            return redirect()->back()->withErrors($validation);
+        }
         $game = new Game();
 
         $game->name = $r->name;
@@ -92,27 +112,17 @@ class GameController extends Controller
         return view ('updategame',compact('game','genres'));
     }
 
-    public function updateGame($id)
+    public function updateGame(Request $r)
     {
-        //        $game = Game::find($r->id);
-//
-//        $game->name = $r->name;
-//        $game->price = $r->price;
-//        $game->rdate = $r->rdate;
-//        $game->genre_id = $r->genre;
-//        $image = Input::file('picture');
-//        $file_name = $r->image;
-//        $upload = Input::file('picture')->move('games', $file_name);
-//        $game->picture = 'games/'.$file_name;
-//
-//        $game->save();
-        $game = Game::find($id);
 
-        $game-> name = Input::get('name');
-        $game-> price = Input::get('price');
-        $game-> genre_id = Input::get('genre');
-        $game-> rdate = Input::get('rdate');
-        $game-> picture = Input::get('picture');
+
+        $game = Game::find($r->update_id);
+
+        $game-> name = $r->name;
+        $game-> price = $r->price;
+        $game-> genre_id = $r->genre;
+        $game-> rdate = $r->rdate;
+        $game->picture = 'games/'.$r->picture;
 
         $game->save();
 
@@ -128,5 +138,14 @@ class GameController extends Controller
         return redirect('managegame');
     }
 
+//    public function addRate(Request $r){
+//        $rates = new Rating();
+//        $rates->user_id = Auth::user()->id;
+//        $rates->rating = $r->input("rating");
+//        $rates->game_id = $r->input("id");
+//        $rates->save();
+//
+//        return redirect()->back();
+//    }
 
 }

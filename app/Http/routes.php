@@ -42,7 +42,7 @@ Route::get('/updategameview/{id}', [
     'roles' => ['admin']
 ]);
 
-Route::post('/updategame/{id}', [
+Route::post('/updategame', [
     'uses' => 'GameController@updateGame',
     'middleware' => 'roles',
     'roles' => ['admin']
@@ -92,7 +92,7 @@ Route::get('/transaction/detail/{id}', [
 Route::post('/transaction', [
     'uses' => 'TransactionController@insert',
     'middleware' => 'roles',
-    'roles' => ['admin']
+    'roles' => ['admin','member']
 ]);
 
 Route::get('/transaction/delete/{id}',[
@@ -195,4 +195,10 @@ Route::post('/assignRole',[
     'uses' => 'UserController@changeRole',
     'middleware' => 'roles',
     'roles' => ['admin']
+]);
+
+Route::post('/addRate',[
+    'uses' => 'GameController@addRate',
+    'middleware' => 'roles',
+    'roles' => ['admin','member']
 ]);

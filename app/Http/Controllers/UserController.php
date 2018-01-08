@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Input;
 use App\User;
 use App\Role;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -49,6 +50,18 @@ class UserController extends Controller
 
     public function editProfile(Request $r)
     {
+        $rules = [
+            'name' => 'required|min:5|max:255',
+            'dob' => 'required|before:-12 years',
+            'pp' => 'required|image',
+        ];
+
+        //validasi
+        $validation = Validator::make($r->all(), $rules);
+
+        if($validation->fails()){
+            return redirect()->back()->withErrors($validation);
+        }
         $user = Auth::User();
 
         $user->name = $r->name;
@@ -82,7 +95,7 @@ class UserController extends Controller
 
     public function update(Request $r){
 
-        $user = User::find($r->id);
+        $user = User::find($r->id_update);
 
         $user->email = $r->email;
         $user->name = $r->name;

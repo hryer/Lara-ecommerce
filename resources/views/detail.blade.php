@@ -15,9 +15,32 @@
                             <dd>{{ $game->price }}</dd>
                             <dt>Genre</dt>
                             <dd>{{ $game->genre->name }}</dd>
+                            <dt>Rating</dt>
+                            {{--@if($rate != NULL)--}}
+                                {{--<dd>{{  $rate->rating }}</dd>--}}
+                            {{--@else--}}
+                                {{--<dd> - </dd>--}}
+                            {{--@endif@if($rate != NULL)--}}
+                                {{--<dd>{{  $rate->rating }}</dd>--}}
+                            {{--@else--}}
+                                {{--<dd> - </dd>--}}
+                            {{--@endif--}}
+                        {{--</dl>--}}
+                        {{--<form method="POST" action="/addRate" enctype="multipart/form-data">--}}
+                            {{--<input type="hidden" name="_token" value="{{ csrf_token() }}">--}}
+                            {{--<input type="hidden" name="id" value="{{$game->id}}">--}}
 
-                        </dl>
-                        {{--buat rate--}}
+                            {{--<select name="rating" id="rating" class="form-control" width="20">--}}
+                                {{--<option value="1">1</option>--}}
+                                {{--<option value="2">2</option>--}}
+                                {{--<option value="3">3</option>--}}
+                                {{--<option value="4">4</option>--}}
+                                {{--<option value="5">5</option>--}}
+                            {{--</select>--}}
+
+                            {{--<input type="submit" class="btn btn-primary" value="rate">--}}
+                        {{--</form>--}}
+
                         <br>
 
 

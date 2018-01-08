@@ -85,7 +85,7 @@
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
                                     <input id="pp" type="file" class="form-control" name="pp" value="{{$user->pp}}" required autofocus>
-
+                                    <input type="hidden" value="{{$user->id}}" name="id_update" >
                                     @if ($errors->has('pp'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('pp') }}</strong>

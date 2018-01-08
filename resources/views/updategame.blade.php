@@ -7,7 +7,7 @@
                 <div class="panel panel-default">
                     <div class="panel-heading">Update Game</div>
                     <div class="panel-body">
-                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/updategame/'.$game->id) }}">
+                        <form class="form-horizontal" enctype="multipart/form-data" role="form" method="POST" action="{{ url('/updategame')}}">
                             {{ csrf_field() }}
 
                             <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
@@ -81,13 +81,15 @@
                                 <div class="col-md-2"></div>
                                 <div class="col-md-8">
                                     <input id="picture" type="file" class="form-control" name="picture" required>
-
+                                    <input type="hidden" name="update_id" value="{{$game->id}}">
+                                    
                                     @if ($errors->has('picture'))
                                         <span class="help-block">
                                         <strong>{{ $errors->first('picture') }}</strong>
                                     </span>
                                     @endif
                                 </div>
+                                
                             </div>
 
                             <div class="form-group">
